@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="nl.das.terraria">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" tools:node="replace" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" tools:node="replace" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" tools:node="replace" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="replace" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/terrarium_icon"
+        android:label="@string/app_title"
+        android:roundIcon="@drawable/terrarium_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <service
+            android:name=".services.TcuService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+        <!--
+                <service
+            android:name=".services.BTService"
+            android:enabled="true"
+            android:exported="true" />
+        -->
+        <activity
+            android:name=".TerrariaApp"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

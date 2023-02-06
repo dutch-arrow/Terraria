@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_state_item"
+        android:title="@string/mitState" />
+    <item
+        android:id="@+id/menu_timers_item"
+        android:title="@string/mitTimers" />
+    <item
+        android:id="@+id/menu_program_item"
+        android:title="@string/mitRuleset" />
+    <item
+        android:id="@+id/menu_history_item"
+        android:title="@string/mitHistory" />
+    <item
+        android:id="@+id/menu_help_item"
+        android:title="@string/mitHelp" />
+</menu>

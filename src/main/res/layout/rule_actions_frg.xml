@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/rs_tvwRuleText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:labelFor="@id/rs_edtValueBelow"
+                android:text="@string/rs_lblTempRuleText1"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/rs_tvwBelow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:labelFor="@id/rs_edtValueBelow"
+                android:text="@string/rs_lblTempRuleText2b"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwRuleText1"
+                app:layout_constraintStart_toEndOf="@+id/rs_tvwRuleText1"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwRuleText1" />
+
+            <EditText
+                android:id="@+id/rs_edtValueBelow"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:autofillHints="android:hint"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwBelow"
+                app:layout_constraintStart_toEndOf="@+id/rs_tvwBelow"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwRuleText1" />
+
+            <TextView
+                android:id="@+id/rs_tvwDegrees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degrees"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_edtValueBelow"
+                app:layout_constraintStart_toEndOf="@+id/rs_edtValueBelow"
+                app:layout_constraintTop_toTopOf="@+id/rs_edtValueBelow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rs_lblTempRuleText3"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwDegrees"
+                app:layout_constraintStart_toEndOf="@+id/rs_tvwDegrees"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwDegrees" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/rs_lblActionText1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_edtValueBelow" />
+
+            <Spinner
+                android:id="@+id/rs_spnDevice_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText1_1"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText1_1"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText1_1" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rs_lblActionText2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_spnDevice_1"
+                app:layout_constraintStart_toEndOf="@+id/rs_spnDevice_1"
+                app:layout_constraintTop_toTopOf="@+id/rs_spnDevice_1" />
+
+            <TextView
+                android:id="@+id/rs_lblAnd_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/rs_lblActionText4"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_lblActionText1_1" />
+
+            <RadioGroup
+                android:id="@+id/rs_rbgPeriod_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:enabled="false"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText2_1"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText2_1"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText2_1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbIdeal_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:orientation="horizontal"
+                        android:text="@string/rs_lblActionText3b"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbPeriod_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:labelFor="@id/rs_edtPeriod_1"
+                        android:text="@string/rs_lblActionText3a"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_1" />
+
+                    <EditText
+                        android:id="@+id/rs_edtPeriod_1"
+                        android:layout_width="56dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:autofillHints="android:hint"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rs_rbPeriod_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/rs_lblSeconds_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:enabled="false"
+                        android:text="@string/seconds"
+                        android:textColor="@color/disabled"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_1"
+                        app:layout_constraintStart_toEndOf="@+id/rs_edtPeriod_1"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/rs_lblActionText1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/rs_lblActionText1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_lblAnd_1" />
+
+            <Spinner
+                android:id="@+id/rs_spnDevice_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText1_2"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText1_2"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText1_2" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rs_lblActionText2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_spnDevice_2"
+                app:layout_constraintStart_toEndOf="@+id/rs_spnDevice_2"
+                app:layout_constraintTop_toTopOf="@+id/rs_spnDevice_2" />
+
+            <RadioGroup
+                android:id="@+id/rs_rbgPeriod_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:enabled="false"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText2_2"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText2_2"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText2_2">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbIdeal_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:orientation="horizontal"
+                        android:text="@string/rs_lblActionText3b"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbPeriod_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:labelFor="@id/rs_edtPeriod_2"
+                        android:text="@string/rs_lblActionText3a"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_2" />
+
+                    <EditText
+                        android:id="@+id/rs_edtPeriod_2"
+                        android:layout_width="56dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:autofillHints="android:hint"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rs_rbPeriod_2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/rs_lblSeconds_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:enabled="false"
+                        android:text="@string/seconds"
+                        android:textColor="@color/disabled"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_2"
+                        app:layout_constraintStart_toEndOf="@+id/rs_edtPeriod_2"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/rs_tvwRuleText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:labelFor="@id/rs_edtValueAbove"
+                android:text="@string/rs_lblTempRuleText1"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_rbgPeriod_2" />
+
+            <TextView
+                android:id="@+id/rs_tvwAbove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:labelFor="@id/rs_edtValueAbove"
+                android:text="@string/rs_lblTempRuleText2a"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwRuleText3"
+                app:layout_constraintStart_toEndOf="@+id/rs_tvwRuleText3"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwRuleText3" />
+
+            <EditText
+                android:id="@+id/rs_edtValueAbove"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:autofillHints="android:hint"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwAbove"
+                app:layout_constraintStart_toEndOf="@+id/rs_tvwAbove"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwAbove" />
+
+            <TextView
+                android:id="@+id/rs_tvwDegrees2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degrees"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwAbove"
+                app:layout_constraintStart_toEndOf="@+id/rs_edtValueAbove"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwAbove" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rs_lblTempRuleText3"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_tvwDegrees2"
+                app:layout_constraintStart_toEndOf="@+id/rs_tvwDegrees2"
+                app:layout_constraintTop_toTopOf="@+id/rs_tvwDegrees2" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/rs_lblActionText1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_edtValueAbove" />
+
+            <Spinner
+                android:id="@+id/rs_spnDevice_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText1_3"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText1_3"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText1_3" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rs_lblActionText2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_spnDevice_3"
+                app:layout_constraintStart_toEndOf="@+id/rs_spnDevice_3"
+                app:layout_constraintTop_toTopOf="@+id/rs_spnDevice_3" />
+
+            <RadioGroup
+                android:id="@+id/rs_rbgPeriod_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:enabled="false"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText2_3"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText2_3"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText2_3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbIdeal_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:orientation="horizontal"
+                        android:text="@string/rs_lblActionText3b"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbPeriod_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:labelFor="@id/rs_edtPeriod_3"
+                        android:text="@string/rs_lblActionText3a"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_3" />
+
+                    <EditText
+                        android:id="@+id/rs_edtPeriod_3"
+                        android:layout_width="56dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:autofillHints="android:hint"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rs_rbPeriod_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/rs_lblSeconds_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:enabled="false"
+                        android:text="@string/seconds"
+                        android:textColor="@color/disabled"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_3"
+                        app:layout_constraintStart_toEndOf="@+id/rs_edtPeriod_3"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/rs_lblAnd_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/rs_lblActionText4"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_lblActionText1_3" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText1_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/rs_lblActionText1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rs_lblAnd_3" />
+
+            <Spinner
+                android:id="@+id/rs_spnDevice_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText1_4"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText1_4"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText1_4"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/rs_lblActionText2_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rs_lblActionText2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText1_4"
+                app:layout_constraintStart_toEndOf="@+id/rs_spnDevice_4"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText1_4" />
+
+            <RadioGroup
+                android:id="@+id/rs_rbgPeriod_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:enabled="false"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/rs_lblActionText2_4"
+                app:layout_constraintStart_toEndOf="@+id/rs_lblActionText2_4"
+                app:layout_constraintTop_toTopOf="@+id/rs_lblActionText2_4">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbIdeal_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:orientation="horizontal"
+                        android:text="@string/rs_lblActionText3b"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rs_rbPeriod_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:labelFor="@id/rs_edtPeriod_4"
+                        android:text="@string/rs_lblActionText3a"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_4" />
+
+                    <EditText
+                        android:id="@+id/rs_edtPeriod_4"
+                        android:layout_width="56dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:autofillHints="android:hint"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rs_rbPeriod_4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/rs_lblSeconds_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:enabled="false"
+                        android:text="@string/seconds"
+                        android:textColor="@color/disabled"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rs_edtPeriod_4"
+                        app:layout_constraintStart_toEndOf="@+id/rs_edtPeriod_4"
+                        app:layout_constraintTop_toTopOf="@+id/rs_edtPeriod_4" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</merge>

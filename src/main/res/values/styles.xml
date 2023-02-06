@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionOverflowButtonStyle">@style/OptionsMenuButtonOverflow</item>
+    </style>
+    <!-- Style to replace actionbar overflow icon. Set item 'android:actionOverflowButtonStyle' in AppTheme above-->
+    <style name="OptionsMenuButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_options_menu</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+        <item name="android:contentDescription">Hamburger style icon</item>
+    </style>
+</resources>

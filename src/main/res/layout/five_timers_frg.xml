@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/ti_btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/btnSave"
+            app:layout_constraintBottom_toBottomOf="@+id/ti_btnRefresh"
+            app:layout_constraintStart_toEndOf="@+id/ti_btnRefresh"
+            app:layout_constraintTop_toTopOf="@+id/ti_btnRefresh" />
+
+        <Button
+            android:id="@+id/ti_btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/btnRefresh"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/it_layTimer_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/it_tvwTimer_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Timer 1"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/it_tvwOn_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOn"
+            android:text="@string/on"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwTimer_1"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwTimer_1"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwTimer_1" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOn_1"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOn_1"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOn_1"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOn_1" />
+
+        <TextView
+            android:id="@+id/it_tvwOff_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOff"
+            android:text="@string/off"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@id/it_edtTimeOn_1"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOn_1"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOn_1" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOff_1"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOff_1"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOff_1"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOff_1" />
+
+        <TextView
+            android:id="@+id/it_tvwEvery_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:labelFor="@id/it_edtRepeat_1"
+            android:text="@string/it_tvwEvery"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_1"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOff_1"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_1" />
+
+        <EditText
+            android:id="@+id/it_edtRepeat_1"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_1"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwEvery_1"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_1" />
+
+        <TextView
+            android:id="@+id/it_tvwDay_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwDay"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwEvery_1"
+            app:layout_constraintStart_toEndOf="@+id/it_edtRepeat_1"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwEvery_1" />
+
+        <TextView
+            android:id="@+id/it_tvwFor_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwFor"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwDay_1"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwDay_1"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwDay_1" />
+
+        <EditText
+            android:id="@+id/it_edtPeriod_1"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtRepeat_1"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwFor_1"
+            app:layout_constraintTop_toTopOf="@+id/it_edtRepeat_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/seconds"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwFor_1"
+            app:layout_constraintStart_toEndOf="@+id/it_edtPeriod_1"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwFor_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/it_layTimer_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/it_tvwTimer_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Timer 2"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/it_tvwOn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOn"
+            android:text="@string/on"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwTimer_2"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwTimer_2"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwTimer_2" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOn_2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOn_2"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOn_2"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOn_2" />
+
+        <TextView
+            android:id="@+id/it_tvwOff_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOff"
+            android:text="@string/off"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@id/it_edtTimeOn_2"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOn_2"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOn_2" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOff_2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOff_2"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOff_2"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOff_2" />
+
+        <TextView
+            android:id="@+id/it_tvwEvery_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:labelFor="@id/it_edtRepeat_2"
+            android:text="@string/it_tvwEvery"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_2"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOff_2"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_2" />
+
+        <EditText
+            android:id="@+id/it_edtRepeat_2"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_2"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwEvery_2"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_2" />
+
+        <TextView
+            android:id="@+id/it_tvwDay_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwDay"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwEvery_2"
+            app:layout_constraintStart_toEndOf="@+id/it_edtRepeat_2"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwEvery_2" />
+
+        <TextView
+            android:id="@+id/it_tvwFor_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwFor"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwDay_2"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwDay_2"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwDay_2" />
+
+        <EditText
+            android:id="@+id/it_edtPeriod_2"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtRepeat_2"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwFor_2"
+            app:layout_constraintTop_toTopOf="@+id/it_edtRepeat_2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/seconds"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwFor_2"
+            app:layout_constraintStart_toEndOf="@+id/it_edtPeriod_2"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwFor_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/it_layTimer_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/it_tvwTimer_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Timer 3"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/it_tvwOn_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOn"
+            android:text="@string/on"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwTimer_3"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwTimer_3"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwTimer_3" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOn_3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOn_3"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOn_3"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOn_3" />
+
+        <TextView
+            android:id="@+id/it_tvwOff_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOff"
+            android:text="@string/off"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@id/it_edtTimeOn_3"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOn_3"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOn_3" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOff_3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOff_3"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOff_3"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOff_3" />
+
+        <TextView
+            android:id="@+id/it_tvwEvery_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:labelFor="@id/it_edtRepeat_3"
+            android:text="@string/it_tvwEvery"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_3"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOff_3"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_3" />
+
+        <EditText
+            android:id="@+id/it_edtRepeat_3"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_3"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwEvery_3"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_3" />
+
+        <TextView
+            android:id="@+id/it_tvwDay_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwDay"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwEvery_3"
+            app:layout_constraintStart_toEndOf="@+id/it_edtRepeat_3"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwEvery_3" />
+
+        <TextView
+            android:id="@+id/it_tvwFor_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwFor"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwDay_3"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwDay_3"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwDay_3" />
+
+        <EditText
+            android:id="@+id/it_edtPeriod_3"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtRepeat_3"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwFor_3"
+            app:layout_constraintTop_toTopOf="@+id/it_edtRepeat_3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/seconds"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwFor_3"
+            app:layout_constraintStart_toEndOf="@+id/it_edtPeriod_3"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwFor_3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/it_layTimer_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/it_tvwTimer_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Timer 4"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/it_tvwOn_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOn"
+            android:text="@string/on"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwTimer_4"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwTimer_4"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwTimer_4" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOn_4"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOn_4"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOn_4"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOn_4" />
+
+        <TextView
+            android:id="@+id/it_tvwOff_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOff"
+            android:text="@string/off"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@id/it_edtTimeOn_4"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOn_4"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOn_4" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOff_4"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOff_4"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOff_4"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOff_4" />
+
+        <TextView
+            android:id="@+id/it_tvwEvery_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:labelFor="@id/it_edtRepeat_4"
+            android:text="@string/it_tvwEvery"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_4"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOff_4"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_4" />
+
+        <EditText
+            android:id="@+id/it_edtRepeat_4"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_4"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwEvery_4"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_4" />
+
+        <TextView
+            android:id="@+id/it_tvwDay_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwDay"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwEvery_4"
+            app:layout_constraintStart_toEndOf="@+id/it_edtRepeat_4"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwEvery_4" />
+
+        <TextView
+            android:id="@+id/it_tvwFor_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwFor"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwDay_4"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwDay_4"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwDay_4" />
+
+        <EditText
+            android:id="@+id/it_edtPeriod_4"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtRepeat_4"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwFor_4"
+            app:layout_constraintTop_toTopOf="@+id/it_edtRepeat_4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/seconds"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwFor_4"
+            app:layout_constraintStart_toEndOf="@+id/it_edtPeriod_4"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwFor_4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/it_layTimer_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/it_tvwTimer_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="Timer 5"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/it_tvwOn_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOn"
+            android:text="@string/on"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwTimer_5"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwTimer_5"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwTimer_5" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOn_5"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOn_5"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOn_5"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOn_5" />
+
+        <TextView
+            android:id="@+id/it_tvwOff_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/it_edtTimeOff"
+            android:text="@string/off"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@id/it_edtTimeOn_5"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOn_5"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOn_5" />
+
+        <EditText
+            android:id="@+id/it_edtTimeOff_5"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwOff_5"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwOff_5"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwOff_5" />
+
+        <TextView
+            android:id="@+id/it_tvwEvery_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:labelFor="@id/it_edtRepeat_5"
+            android:text="@string/it_tvwEvery"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_5"
+            app:layout_constraintStart_toEndOf="@+id/it_edtTimeOff_5"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_5" />
+
+        <EditText
+            android:id="@+id/it_edtRepeat_5"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtTimeOff_5"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwEvery_5"
+            app:layout_constraintTop_toTopOf="@+id/it_edtTimeOff_5" />
+
+        <TextView
+            android:id="@+id/it_tvwDay_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwDay"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwEvery_5"
+            app:layout_constraintStart_toEndOf="@+id/it_edtRepeat_5"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwEvery_5" />
+
+        <TextView
+            android:id="@+id/it_tvwFor_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/it_tvwFor"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwDay_5"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwDay_5"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwDay_5" />
+
+        <EditText
+            android:id="@+id/it_edtPeriod_5"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_edtRepeat_5"
+            app:layout_constraintStart_toEndOf="@+id/it_tvwFor_5"
+            app:layout_constraintTop_toTopOf="@+id/it_edtRepeat_5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/seconds"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/it_tvwFor_5"
+            app:layout_constraintStart_toEndOf="@+id/it_edtPeriod_5"
+            app:layout_constraintTop_toTopOf="@+id/it_tvwFor_5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

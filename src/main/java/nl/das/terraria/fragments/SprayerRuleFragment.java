@@ -160,12 +160,14 @@ public class SprayerRuleFragment extends Fragment {
         btnSaveDR.setEnabled(false);
         btnSaveDR.setOnClickListener(v -> {
             btnSaveDR.requestFocusFromTouch();
+            wait.start();
             saveDryingRule();
             btnSaveDR.setEnabled(false);
         });
         Button btnRefreshDR = view.findViewById(R.id.dr_btnRefresh);
         btnRefreshDR.setEnabled(true);
         btnRefreshDR.setOnClickListener(v -> {
+            wait.start();
             getDryingRule();
             btnSaveDR.setEnabled(false);
         });

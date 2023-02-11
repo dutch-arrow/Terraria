@@ -33,6 +33,13 @@
     <string name="st_btnRefresh">Vernieuwen</string>
     <string name="st_tvwClock">Klok:</string>
     <string name="dlg_tvwResetHours1">Geef het totaal aantal branduren op</string>
+    <string name="lblOnPeriod">Hoe lang moet het apparaat aan staan?</string>
+    <string name="lblOnPeriod2">Geef waarde op in seconden, max 3600.</string>
+    <string name="lblOnPeriod3">Geen waarde is geen eindtijd.</string>
+    <string name="dltOnPeriod">Aan periode</string>
+    <string name="edtOnPeriod"></string>
+    <string name="dlt_btnSave">Ok</string>
+    <string name="dlt_btnCancel">Annuleer</string>
     <string name="st_btnManual">Stel in</string>
     <string name="st_tvwTerrarium">Terrarium:</string>
     <string name="st_tvwRoom">Kamer:</string>

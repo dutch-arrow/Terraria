@@ -218,7 +218,7 @@ public class TcuService extends Service {
         BluetoothDevice s = devices.get(hosts.get(tcunr));
         if (s != null) {
             json = btService.sendRequest(s, uuids.get(tcunr), new Command(btCommands[command], jsonobj));
-            if (json == null) {
+            if (json == null || json.startsWith("ERROR")) {
                 json = sendHttpRequest(tcunr, command, jsonobj);
             }
         } else {

@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -231,10 +234,26 @@ public class StateFragment extends Fragment {
             swDevice.setOnClickListener(cv -> {
                 SwitchCompat sc = (SwitchCompat) cv;
                 if (sc.isChecked()) {
-                    switchDevice(d.getDevice(), true);
-                    state.setText(R.string.noendtime);
+                    // Create an instance of the dialog fragment and show it
+                    OnPeriodDialogFragment dlgPeriod = OnPeriodDialogFragment.newInstance(d.getDevice());
+                    FragmentManager fm = requireActivity().getSupportFragmentManager();
+                    // SETS the target fragment for use later when sending results
+                    fm.setFragmentResultListener("period", this, (requestKey, result) -> {
+                        int period = result.getInt("period");
+                        switchDevice(d.getDevice(), true, period);
+                        if (period == 0) {
+                            state.setText("geen eindtijd");
+                        } else if (period < 0) {
+                            state.setText("tot ideale temperatuur bereikt is");
+                        } else if (period > 0) {
+                            Date now = Calendar.getInstance().getTime();
+                            String prd = (String) DateFormat.format("HH:mm:ss", (now.getTime() + (period * 1000)));
+                            state.setText(prd);
+                        }
+                    });
+                    dlgPeriod.show(fm, "OnPeriodDialogFragment");
                 } else {
-                    switchDevice(d.getDevice(), false);
+                    switchDevice(d.getDevice(), false, 0);
                     state.setText("");
                 }
             });
@@ -281,15 +300,19 @@ public class StateFragment extends Fragment {
         super.onDestroy();
     }
 
-
-    private void switchDevice(String device, boolean yes) {
+    private void switchDevice(String device, boolean yes, int period) {
         wait.start();
         if (tcuservice != null) {
             try {
                 Message msg;
                 if (yes) {
-                    Utils.log('i', "StateFragment: switchDevice() on");
-                    msg = Message.obtain(null, TcuService.CMD_SET_DEVICE_ON);
+                    if (period > 0) {
+                        Utils.log('i', "StateFragment: switchDevice() on");
+                        msg = Message.obtain(null, TcuService.CMD_SET_DEVICE_ON_FOR);
+                    } else {
+                        Utils.log('i', "StateFragment: switchDevice() on");
+                        msg = Message.obtain(null, TcuService.CMD_SET_DEVICE_ON);
+                    }
                 } else {
                     Utils.log('i', "StateFragment: switchDevice() off");
                     msg = Message.obtain(null, TcuService.CMD_SET_DEVICE_OFF);
@@ -299,6 +322,9 @@ public class StateFragment extends Fragment {
                 data.putInt("tcunr", tcunr);
                 JsonObject d = new JsonObject();
                 d.addProperty("device", device);
+                if (period > 0) {
+                    d.addProperty("period", period);
+                }
                 data.putString("json", new Gson().toJson(d));
                 msg.setData(data);
                 tcuservice.send(msg);

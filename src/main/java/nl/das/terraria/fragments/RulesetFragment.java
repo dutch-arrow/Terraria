@@ -194,6 +194,7 @@ public class RulesetFragment extends Fragment {
         btnSave.setOnClickListener(v -> {
             btnSave.requestFocusFromTouch();
             imm.hideSoftInputFromWindow(btnSave.getWindowToken(), 0);
+            wait.start();
             saveRuleset();
             btnSave.setEnabled(false);
         });

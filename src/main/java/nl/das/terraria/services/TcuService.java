@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.Utils;
 import nl.das.terraria.json.Command;
 
@@ -217,11 +218,14 @@ public class TcuService extends Service {
         String json = null;
         BluetoothDevice s = devices.get(hosts.get(tcunr));
         if (s != null) {
+            TerrariaApp.instance.setBluetoothIcon();
             json = btService.sendRequest(s, uuids.get(tcunr), new Command(btCommands[command], jsonobj));
             if (json == null || json.startsWith("ERROR")) {
+                TerrariaApp.instance.setWifiIcon();
                 json = sendHttpRequest(tcunr, command, jsonobj);
             }
         } else {
+            TerrariaApp.instance.setWifiIcon();
             json = sendHttpRequest(tcunr, command, jsonobj);
         }
         if (json != null) {

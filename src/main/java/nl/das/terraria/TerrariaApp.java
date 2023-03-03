@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -149,7 +150,7 @@ public class TerrariaApp extends AppCompatActivity {
     public static int nrOfTerraria;
     public static Properties[] configs;
     public static int curTabNr;
-    public TerrariaApp instance;
+    public static TerrariaApp instance;
     private BluetoothAdapter btAdapter;
     private final ArrayList<Integer> supportedMessages = new ArrayList<>();
 
@@ -390,6 +391,13 @@ public class TerrariaApp extends AppCompatActivity {
         }
     }
 
+    public void setBluetoothIcon() {
+        ((ImageView)appView.findViewById(R.id.WifiOrBT)).setImageResource(R.drawable.bluetooth);
+    }
+
+    public void setWifiIcon() {
+        ((ImageView)appView.findViewById(R.id.WifiOrBT)).setImageResource(R.drawable.wifi);
+    }
     /*
      * Wifi methods
      */

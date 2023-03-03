@@ -190,6 +190,7 @@ public class TimersListFragment extends Fragment {
         btnRefresh = view.findViewById(R.id.ti_btnRefresh);
         btnRefresh.setEnabled(true);
         btnRefresh.setOnClickListener(v -> {
+            wait.start();
             getTimers();
             imm.hideSoftInputFromWindow(btnRefresh.getWindowToken(), 0);
             btnSave.setEnabled(false);

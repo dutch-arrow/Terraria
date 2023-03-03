@@ -201,6 +201,7 @@ public class RulesetFragment extends Fragment {
         btnRefresh = view.findViewById(R.id.rs_btnRefresh);
         btnRefresh.setOnClickListener(v -> {
             imm.hideSoftInputFromWindow(btnRefresh.getWindowToken(), 0);
+            wait.start();
             getRuleset();
             btnSave.setEnabled(false);
         });

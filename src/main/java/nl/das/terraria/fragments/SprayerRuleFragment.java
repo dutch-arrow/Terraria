@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +31,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.services.TcuService;
 import nl.das.terraria.R;
-import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.Utils;
 import nl.das.terraria.dialogs.WaitSpinner;
 import nl.das.terraria.json.Error;
@@ -66,9 +65,9 @@ public class SprayerRuleFragment extends Fragment {
         Utils.log('i', "SprayerRuleFragment: newInstance() start");
         SprayerRuleFragment fragment = new SprayerRuleFragment();
         Bundle args = new Bundle();
-        args.putInt("tcunr", tabnr - 1);
+        args.putInt("tcunr", tabnr);
         fragment.setArguments(args);
-        Utils.log('i', "SprayerRuleFragment: newInstance() end");
+        Utils.log('i', "SprayerRuleFragment: newInstance() end. TCUnr=" + tabnr);
         return fragment;
     }
     /**
@@ -282,12 +281,12 @@ public class SprayerRuleFragment extends Fragment {
 
     private void getDryingRule() {
         Utils.log('i', "SprayerRuleFragment: getDryingRule() start");
-        if (TerrariaApp.MOCK[tcunr]) {
+        if (TerrariaFragment.MOCK[tcunr - 1]) {
             Utils.log('i', "SprayerRuleFragment: getDryingRule() from file (mock)");
             try {
                 Gson gson = new Gson();
                 String response = new BufferedReader(
-                        new InputStreamReader(getResources().getAssets().open("sprayer_rule_" + TerrariaApp.configs[tcunr].getMockPostfix() + ".json")))
+                        new InputStreamReader(getResources().getAssets().open("sprayer_rule_" + TerrariaApp.configs.get(tcunr).getMockPostfix() + ".json")))
                         .lines().collect(Collectors.joining("\n"));
                 dryingRule = gson.fromJson(response.toString(), SprayerRule.class);
                 updateDryingRule();

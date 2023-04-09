@@ -7,9 +7,6 @@ import java.util.List;
 
 public class Ruleset {
 
-    @SerializedName("terrarium")
-    @Expose
-    private Integer terrarium;
     @SerializedName("active")
     @Expose
     private String active;
@@ -25,14 +22,6 @@ public class Ruleset {
     @SerializedName("rules")
     @Expose
     private List<Rule> rules = null;
-
-    public Integer getTerrarium() {
-        return terrarium;
-    }
-
-    public void setTerrarium(Integer terrarium) {
-        this.terrarium = terrarium;
-    }
 
     public String getActive() {
         return active;

@@ -34,18 +34,8 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/tabbar"
-        android:background="@color/colorPrimaryDark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include layout="@layout/tab_bar"/>
-
-    </LinearLayout>
-
     <FrameLayout
-        android:id="@+id/layout"
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

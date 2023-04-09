@@ -39,9 +39,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.services.TcuService;
 import nl.das.terraria.R;
-import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.Utils;
 import nl.das.terraria.dialogs.WaitSpinner;
 import nl.das.terraria.json.Error;
@@ -65,6 +65,7 @@ public class StateFragment extends Fragment {
     private TextView tvwTTemp;
     private TextView tvwRHum;
     private TextView tvwRTemp;
+    private TextView tvwCpu;
 
     public StateFragment() {
         supportedMessages.add(TcuService.CMD_GET_SENSORS);
@@ -81,7 +82,7 @@ public class StateFragment extends Fragment {
         Utils.log('i', "StateFragment.newInstance() start");
         StateFragment fragment = new StateFragment();
         Bundle args = new Bundle();
-        args.putInt("tcunr", tabnr - 1);
+        args.putInt("tcunr", tabnr);
         fragment.setArguments(args);
         Utils.log('i', "StateFragment.newInstance() end");
         return fragment;
@@ -179,7 +180,7 @@ public class StateFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_state, container, false);
         deviceLayout = view.findViewById(R.id.trm_lay_device_state);
-        for (Device d :  TerrariaApp.configs[tcunr].getDevices()) {
+        for (Device d :  TerrariaApp.configs.get(tcunr).getDevices()) {
             View v = inflater.inflate(R.layout.fragment_device_state, container, false);
             SwitchCompat sw = v.findViewById(R.id.trm_switchDevice);
             String devname = d.getDevice();
@@ -217,7 +218,7 @@ public class StateFragment extends Fragment {
 
         // walk through all device views
         int vix = 0;
-        for (Device d :  TerrariaApp.configs[tcunr].getDevices()) {
+        for (Device d :  TerrariaApp.configs.get(tcunr).getDevices()) {
             View v = deviceLayout.getChildAt(vix);
             SwitchCompat swManual = v.findViewById(R.id.trm_swManualDevice);
             TextView state = v.findViewById(R.id.trm_tvwDeviceState);
@@ -280,6 +281,7 @@ public class StateFragment extends Fragment {
         tvwTTemp = view.findViewById(R.id.trm_st_tvwTtemp);
         tvwRHum = view.findViewById(R.id.trm_st_tvwRhum);
         tvwRTemp = view.findViewById(R.id.trm_st_tvwRtemp);
+        tvwCpu = view.findViewById(R.id.trm_st_tvwCpu);
 
         Utils.log('i', "StateFragment: onViewCreated() end");
     }
@@ -366,12 +368,12 @@ public class StateFragment extends Fragment {
     }
 
     private void getSensors() {
-        if (TerrariaApp.MOCK[tcunr]) {
+        if (TerrariaFragment.MOCK[tcunr]) {
             Utils.log('i', "StateFragment: Retrieved mocked sensor readings");
             Gson gson = new Gson();
             try {
                 String response = new BufferedReader(
-                    new InputStreamReader(getResources().getAssets().open("sensors_" + TerrariaApp.configs[tcunr].getMockPostfix() + ".json")))
+                    new InputStreamReader(getResources().getAssets().open("sensors_" + TerrariaApp.configs.get(tcunr).getMockPostfix() + ".json")))
                     .lines().collect(Collectors.joining("\n"));
                 sensors = gson.fromJson(response, Sensors.class);
                 updateSensors();
@@ -403,10 +405,12 @@ public class StateFragment extends Fragment {
         tvwDateTime.setText(sensors.getClock());
         for (Sensor sensor: sensors.getSensors()) {
             if (sensor.getLocation().equalsIgnoreCase("room")) {
-                tvwRTemp.setText(getString(R.string.temperature, sensor.getTemperature()));
-                tvwRHum.setText(getString(R.string.humidity, sensor.getHumidity()));
+                tvwRTemp.setText(sensor.getTemperature().toString());
+                tvwRHum.setText(sensor.getHumidity().toString());
             } else if (sensor.getLocation().equalsIgnoreCase("terrarium")) {
-                tvwTTemp.setText(getString(R.string.temperature, sensor.getTemperature()));
+                tvwTTemp.setText(sensor.getTemperature().toString());
+            } else if (sensor.getLocation().equalsIgnoreCase("cpu")) {
+                tvwCpu.setText(sensor.getTemperature().toString());
             }
         }
         Utils.log('i',"StateFragment: updateSensors() end");
@@ -414,12 +418,12 @@ public class StateFragment extends Fragment {
 
     private void getState() {
         // Request state.
-        if (TerrariaApp.MOCK[tcunr]) {
+        if (TerrariaFragment.MOCK[tcunr]) {
             Utils.log('i', "StateFragment: Retrieved mocked state readings");
             Gson gson = new Gson();
             try {
                 String response = new BufferedReader(
-                        new InputStreamReader(getResources().getAssets().open("state_" + TerrariaApp.configs[tcunr].getMockPostfix() + ".json")))
+                        new InputStreamReader(getResources().getAssets().open("state_" + TerrariaApp.configs.get(tcunr).getMockPostfix() + ".json")))
                         .lines().collect(Collectors.joining("\n"));
                 List<State> states = gson.fromJson(response, new TypeToken<List<State>>() {}.getType());
                 updateState(states);
@@ -449,7 +453,7 @@ public class StateFragment extends Fragment {
     private void updateState(List<State> states) {
         Utils.log('i',"StateFragment: updateState() start");
         int vix = 0;
-        for (Device d :  TerrariaApp.configs[tcunr].getDevices()) {
+        for (Device d :  TerrariaApp.configs.get(tcunr).getDevices()) {
             for (State s : states) {
                 if (d.getDevice().equalsIgnoreCase(s.getDevice())) {
                     View v = deviceLayout.getChildAt(vix);
@@ -461,7 +465,7 @@ public class StateFragment extends Fragment {
                     state.setText(translateEndTime(s.getEndTime()));
                     if (d.isLifecycle()) {
                         TextView h = v.findViewById(R.id.trm_tvwHours_lcc);
-                        h.setText(getString(R.string.hoursOn, s.getHoursOn()));
+                        h.setText(s.getHoursOn().toString());
                     }
                 }
             }

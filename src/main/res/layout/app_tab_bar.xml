@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tab1"
+            android:tag="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab2"
+            android:tag="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab3"
+            android:tag="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab4"
+            android:tag="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab5"
+            android:tag="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab6"
+            android:tag="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab7"
+            android:tag="7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab8"
+            android:tag="8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab9"
+            android:tag="9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tab10"
+            android:tag="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+</LinearLayout>
+

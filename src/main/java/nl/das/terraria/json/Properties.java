@@ -9,9 +9,6 @@ import java.util.List;
 
 public class Properties {
 
-    @SerializedName("tcu")
-    @Expose
-    private String tcu;
     @SerializedName("nr_of_timers")
     @Expose
     private Integer nrOfTimers;
@@ -28,18 +25,6 @@ public class Properties {
     private transient String ip;
     private transient BluetoothDevice device;
     private transient String mockPostfix;
-
-    public String getTcu() { return tcu; }
-
-    public void setTcu(String tcu) { this.tcu = tcu;}
-
-    public String getUuid() { return uuid; }
-
-    public void setUuid(String uuid) { this.uuid = uuid; }
-
-    public String getIp() { return ip; }
-
-    public void setIp(String ip) { this.ip = ip; }
 
     public BluetoothDevice getDevice() { return device; }
 
@@ -80,4 +65,12 @@ public class Properties {
     public String getDeviceName() { return deviceName; }
 
     public void setDeviceName(String deviceName) { this.deviceName = deviceName; }
+
+    public String getUuid() { return uuid; }
+
+    public void setUuid(String uuid) { this.uuid = uuid; }
+
+    public String getIp() { return ip; }
+
+    public void setIp(String ip) { this.ip = ip; }
 }

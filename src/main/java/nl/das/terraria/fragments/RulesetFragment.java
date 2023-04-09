@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
@@ -41,9 +39,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.services.TcuService;
 import nl.das.terraria.R;
-import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.Utils;
 import nl.das.terraria.dialogs.WaitSpinner;
 import nl.das.terraria.json.Error;
@@ -96,10 +94,10 @@ public class RulesetFragment extends Fragment {
         Utils.log('i', "RulesetFragment: newInstance() start");
         RulesetFragment fragment = new RulesetFragment();
         Bundle args = new Bundle();
-        args.putInt("tcunr", tabnr - 1);
+        args.putInt("tcunr", tabnr);
         args.putInt("rulesetnr", rulesetNr);
         fragment.setArguments(args);
-        Utils.log('i', "RulesetFragment: newInstance() end");
+        Utils.log('i', "RulesetFragment: newInstance() end. TCUnr=" + tabnr);
         return fragment;
     }
     /**
@@ -456,7 +454,7 @@ public class RulesetFragment extends Fragment {
         spn_items = new ArrayList<>();
         spn_items.add("");
         int i = 0;
-        for (Device d :  TerrariaApp.configs[tcunr].getDevices()) {
+        for (Device d :  TerrariaApp.configs.get(tcunr).getDevices()) {
             if (!d.getDevice().startsWith("light") && !d.getDevice().equalsIgnoreCase("uvlight")) {
                 int r = getResources().getIdentifier(d.getDevice(), "string", "nl.das.terraria");
                 devSpinner[i] = d.getDevice();
@@ -493,12 +491,12 @@ public class RulesetFragment extends Fragment {
 
     private void getRuleset() {
         Utils.log('i', "RulesetFragment: getRuleset() start");
-        if (TerrariaApp.MOCK[tcunr]) {
+        if (TerrariaFragment.MOCK[tcunr]) {
             Utils.log('i', "RulesetFragment: getRuleset() from file (mock)");
             try {
                 Gson gson = new Gson();
                 String response = new BufferedReader(
-                        new InputStreamReader(getResources().getAssets().open("ruleset" + currentRsNr + "_" + TerrariaApp.configs[tcunr].getMockPostfix() + ".json")))
+                        new InputStreamReader(getResources().getAssets().open("ruleset" + currentRsNr + "_" + TerrariaApp.configs.get(tcunr).getMockPostfix() + ".json")))
                         .lines().collect(Collectors.joining("\n"));
                 ruleset = gson.fromJson(response, Ruleset.class);
                 updateRuleset();
@@ -600,7 +598,6 @@ public class RulesetFragment extends Fragment {
 
     private void saveRuleset() {
         Utils.log('i', "RulesetFragment: saveRuleset() start");
-        ruleset.setTerrarium(1);
         if (tcuservice != null) {
             try {
                 Utils.log('i', "RulesetFragment: saveRuleset()");

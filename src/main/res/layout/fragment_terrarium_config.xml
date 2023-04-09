@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/cfg_tvwTerrName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginStart="10dp"
+                android:textSize="24sp"
+                android:text="@string/cfgTerrariumName" />
+
+            <EditText
+                android:id="@+id/cfg_edtTerrName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:layout_marginStart="10dp"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/cfg_tvwHostName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginStart="10dp"
+                android:textSize="24sp"
+                android:text="@string/cfgHostName" />
+
+            <EditText
+                android:id="@+id/cfg_edtHostName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:layout_marginStart="10dp"
+                android:inputType="text"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                android:importantForAutofill="no" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/cfg_tvwUUID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginStart="10dp"
+                android:textSize="24sp"
+                android:text="@string/cfgUUID" />
+
+            <EditText
+                android:id="@+id/cfg_edtUUID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:layout_marginStart="10dp"
+                android:inputType="text|textCapCharacters"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                android:importantForAutofill="no" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/cfg_tvwIPAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginStart="10dp"
+                android:textSize="24sp"
+                android:text="@string/cfgIpAddress" />
+
+            <EditText
+                android:id="@+id/cfg_edtIPAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:layout_marginStart="10dp"
+                android:digits="0123456789."
+                android:textSize="24sp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                android:importantForAutofill="no" />
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/cfg_btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/btnSave" />
+
+</LinearLayout>

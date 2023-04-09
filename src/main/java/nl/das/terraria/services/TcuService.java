@@ -203,40 +203,44 @@ public class TcuService extends Service {
     }
 
     private void handleCommand(int tcunr, int command, Message msg) {
-        Utils.log('i',"TcuService - handleCommand(): " + btCommands[msg.what] + " from device '" + hosts.get(tcunr) + "'");
-//        Utils.log('i', "TcuService - handleCommand(): json=" + msg.getData().getString("json"));
-        // Get the json data from the message
-        JsonObject jsonobj = null;
-        String jsondata = msg.getData().getString("json");
-        if (jsondata != null) {
-            JsonElement jsonel = JsonParser.parseString(jsondata);
-            if (jsonel != null) {
-                jsonobj = jsonel.getAsJsonObject();
+        if (tcunr > 0) {
+            Utils.log('i', "TcuService - handleCommand(): " + btCommands[msg.what] + " from device '" + hosts.get(tcunr - 1) + "'");
+            //        Utils.log('i', "TcuService - handleCommand(): json=" + msg.getData().getString("json"));
+            // Get the json data from the message
+            JsonObject jsonobj = null;
+            String jsondata = msg.getData().getString("json");
+            if (jsondata != null) {
+                JsonElement jsonel = JsonParser.parseString(jsondata);
+                if (jsonel != null) {
+                    jsonobj = jsonel.getAsJsonObject();
+                }
             }
-        }
-        // Check if Bluetooth is enabled and if so, if the TCU is reachable
-        String json = null;
-        BluetoothDevice s = devices.get(hosts.get(tcunr));
-        if (s != null) {
-            TerrariaApp.instance.setBluetoothIcon();
-            json = btService.sendRequest(s, uuids.get(tcunr), new Command(btCommands[command], jsonobj));
-            if (json == null || json.startsWith("ERROR")) {
+            // Check if Bluetooth is enabled and if so, if the TCU is reachable
+            String json = null;
+            BluetoothDevice s = devices.get(hosts.get(tcunr - 1));
+            if (s != null) {
+                TerrariaApp.instance.setBluetoothIcon();
+                json = btService.sendRequest(s, uuids.get(tcunr - 1), new Command(btCommands[command], jsonobj));
+                if (json == null || json.startsWith("ERROR")) {
+                    TerrariaApp.instance.setWifiIcon();
+                    json = sendHttpRequest(tcunr, command, jsonobj);
+                }
+            } else {
                 TerrariaApp.instance.setWifiIcon();
                 json = sendHttpRequest(tcunr, command, jsonobj);
             }
-        } else {
-            TerrariaApp.instance.setWifiIcon();
-            json = sendHttpRequest(tcunr, command, jsonobj);
-        }
-        if (json != null) {
-            if (!json.startsWith("ERROR")) {
-                JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-                sendResponse(command, jsonObject, tcunr);
+            if (json != null) {
+                if (!json.startsWith("ERROR")) {
+                    JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+                    sendResponse(command, jsonObject, tcunr);
+                } else {
+                    sendResponse(command, JsonParser.parseString("{\"error\":\"TCU '" + hosts.get(tcunr - 1) + "' not reachable\"}").getAsJsonObject(), tcunr);
+                }
             } else {
-                sendResponse(command, JsonParser.parseString("{\"error\":\"TCU '" + hosts.get(tcunr) + "' not reachable\"}").getAsJsonObject(), tcunr);
+                sendResponse(command, null, tcunr);
             }
         } else {
-            sendResponse(command, null, tcunr);
+            Utils.log('i', "TcuService - handleCommand(): tcunr=0");
         }
     }
 
@@ -273,17 +277,17 @@ public class TcuService extends Service {
             case CMD_SET_TIMERS:
             case CMD_SET_RULESET:
             case CMD_SET_SPRAYERRULE:
-                json = httpService.sendPostRequest("http://" + ips.get(tcunr) + "/" + url, new Gson().toJson(jsonobj));
+                json = httpService.sendPostRequest("http://" + ips.get(tcunr - 1) + "/" + url, new Gson().toJson(jsonobj));
                 break;
             default:
-                json = httpService.sendGetRequest("http://" + ips.get(tcunr) + "/" + url);
+                json = httpService.sendGetRequest("http://" + ips.get(tcunr - 1) + "/" + url);
                 break;
         }
         return json;
     }
 
     private void sendResponse(int cmd, JsonObject obj, int tcunr) {
-        Utils.log('i', "TcuService: sendResponse() of command '" + btCommands[cmd] + "' to TCU '" + hosts.get(tcunr) + "'");
+        Utils.log('i', "TcuService: sendResponse() of command '" + btCommands[cmd] + "' to TCU '" + hosts.get(tcunr - 1) + "'");
         // Go through all Messengers that are registered for the given command
         // and when found sent it the message.
         if (clients.get(cmd) != null) {
@@ -312,7 +316,7 @@ public class TcuService extends Service {
         if (ba.isEnabled()) {
             @SuppressLint("MissingPermission")
             Set<BluetoothDevice> pairedDevices = ba.getBondedDevices();
-            Utils.log('i', "TerrariaApp: found " + pairedDevices.size() + " paired devices.");
+            Utils.log('i', "TcuService: found " + pairedDevices.size() + " paired devices.");
             if (pairedDevices.size() > 0) {
                 // There are paired devices.
                 for (BluetoothDevice d : pairedDevices) {
@@ -320,7 +324,7 @@ public class TcuService extends Service {
                     String deviceName = d.getName();
                     if (deviceName.equalsIgnoreCase(hosts.get(tcunr))) {
                         device = d;
-                        Utils.log('i', "TerrariaApp: found Bluetooth device '" + hosts.get(tcunr) + "'");
+                        Utils.log('i', "TcuService: found Bluetooth device '" + hosts.get(tcunr) + "'");
                         break;
                     }
                 }

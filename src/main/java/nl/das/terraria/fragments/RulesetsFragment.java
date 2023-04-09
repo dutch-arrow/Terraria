@@ -21,7 +21,7 @@ import nl.das.terraria.json.Device;
 
 public class RulesetsFragment extends Fragment {
 
-    private int tabnr;
+    private int tcunr;
 
     private LinearLayout rulesetsLayout;
     private Button btnCurrent;
@@ -30,11 +30,11 @@ public class RulesetsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static RulesetsFragment newInstance(int tabnr) {
+    public static RulesetsFragment newInstance(int tcunr) {
         Utils.log('i', "RulesetsFragment: newInstance() start");
         RulesetsFragment fragment = new RulesetsFragment();
         Bundle args = new Bundle();
-        args.putInt("tabnr", tabnr);
+        args.putInt("tcunr", tcunr);
         fragment.setArguments(args);
         Utils.log('i', "RulesetsFragment: newInstance() end");
         return fragment;
@@ -45,7 +45,7 @@ public class RulesetsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Utils.log('i', "RulesetsFragment: onCreate() start");
         if (getArguments() != null) {
-            tabnr = getArguments().getInt("tabnr");
+            tcunr = getArguments().getInt("tcunr");
         }
         Utils.log('i', "RulesetsFragment: onCreate() end");
     }
@@ -56,7 +56,7 @@ public class RulesetsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_rulesets, container, false);
         int backcolorSel = getResources().getColor(R.color.colorPrimaryDark, null);
         int backcolor = getResources().getColor(R.color.notActive, null);
-        int nrrs = TerrariaApp.configs[tabnr - 1].getNrOfPrograms();
+        int nrrs = TerrariaApp.configs.get(tcunr).getNrOfPrograms();
         rulesetsLayout = view.findViewById(R.id.rulesetButtons);
         for (int rs = 0; rs < nrrs; rs++) {
             int rsnr = rs;
@@ -72,7 +72,7 @@ public class RulesetsFragment extends Fragment {
                 }
                 btnCurrent = btn;
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.rs_fcvRuleset, RulesetFragment.newInstance(tabnr, rsnr + 1));
+                ft.replace(R.id.rs_fcvRuleset, RulesetFragment.newInstance(tcunr, rsnr + 1));
                 ft.commit();
             });
             rulesetsLayout.addView(v);
@@ -91,7 +91,7 @@ public class RulesetsFragment extends Fragment {
                 }
                 btnCurrent = btn;
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.rs_fcvRuleset, SprayerRuleFragment.newInstance(tabnr));
+                ft.replace(R.id.rs_fcvRuleset, SprayerRuleFragment.newInstance(tcunr));
                 ft.commit();
             });
             rulesetsLayout.addView(v);
@@ -104,7 +104,7 @@ public class RulesetsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Utils.log('i', "RulesetsFragment: onViewCreated() start");
-        int nrrs = TerrariaApp.configs[tabnr - 1].getNrOfPrograms();
+        int nrrs = TerrariaApp.configs.get(tcunr).getNrOfPrograms();
         int vix = 0;
         int r = getResources().getIdentifier("mitRuleset", "string", "nl.das.terraria");
         for (int rs = 0; rs < nrrs; rs++) {
@@ -124,7 +124,7 @@ public class RulesetsFragment extends Fragment {
     }
 
     private boolean hasSprayer() {
-        for (Device d : TerrariaApp.configs[tabnr - 1].getDevices()) {
+        for (Device d : TerrariaApp.configs.get(tcunr).getDevices()) {
             if (d.getDevice().equalsIgnoreCase("sprayer")) {
                 return true;
             }

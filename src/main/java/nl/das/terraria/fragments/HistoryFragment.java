@@ -45,9 +45,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.services.TcuService;
 import nl.das.terraria.R;
-import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.Utils;
 import nl.das.terraria.dialogs.WaitSpinner;
 import nl.das.terraria.json.Device;
@@ -106,10 +106,12 @@ public class HistoryFragment extends Fragment {
     }
 
     public static HistoryFragment newInstance(int tabnr) {
+        Utils.log('i', "HistoryFragment: newInstance() start");
         HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
-        args.putInt("tcunr", tabnr - 1);
+        args.putInt("tcunr", tabnr);
         fragment.setArguments(args);
+        Utils.log('i', "HistoryFragment: newInstance() end. TCUnr=" + tabnr);
         return fragment;
     }
     /**
@@ -258,7 +260,7 @@ public class HistoryFragment extends Fragment {
         if (getArguments() != null) {
             tcunr = getArguments().getInt("tcunr");
         }
-        devices = TerrariaApp.configs[tcunr].getDevices();
+        devices = TerrariaApp.configs.get(tcunr).getDevices();
         devState = new boolean[devices.size()];
     }
 
@@ -319,7 +321,7 @@ public class HistoryFragment extends Fragment {
         Button btnView = view.findViewById(R.id.his_OkButton);
         btnView.setOnClickListener(v -> getParentFragmentManager()
                 .beginTransaction()
-                .replace(R.id.layout, StateFragment.newInstance(tcunr))
+                .replace(R.id.app_layout, StateFragment.newInstance(tcunr))
                 .commit());
     }
 

@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +27,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -81,7 +78,7 @@ public class TimersListFragment extends Fragment {
         args.putString("deviceID", device);
         args.putInt("tcunr", tcunr);
         fragment.setArguments(args);
-        Utils.log('i', "TimersListFragment: newInstance() start");
+        Utils.log('i', "TimersListFragment: newInstance() end. TCUnr=" + tcunr);
         return fragment;
     }
     /**
@@ -183,6 +180,7 @@ public class TimersListFragment extends Fragment {
         btnSave.setEnabled(false);
         btnSave.setOnClickListener(v -> {
             btnSave.requestFocusFromTouch();
+            wait.start();
             saveTimers();
             imm.hideSoftInputFromWindow(btnSave.getWindowToken(), 0);
             btnSave.setEnabled(false);
@@ -393,11 +391,11 @@ public class TimersListFragment extends Fragment {
 
     private void getTimers() {
         Utils.log('i', "TimersListFragment: getTimers() start");
-        if (TerrariaApp.MOCK[tcunr]) {
+        if (TerrariaFragment.MOCK[tcunr - 1]) {
             try {
                 Gson gson = new Gson();
                 String response = new BufferedReader(
-                        new InputStreamReader(getResources().getAssets().open("timers_" + deviceID + "_" + TerrariaApp.configs[tcunr].getMockPostfix() + ".json")))
+                        new InputStreamReader(getResources().getAssets().open("timers_" + deviceID + "_" + TerrariaApp.configs.get(tcunr).getMockPostfix() + ".json")))
                         .lines().collect(Collectors.joining("\n"));
                 Timer[] devTimers = gson.fromJson(response, new TypeToken<Timer[]>() {}.getType());
                 timers.put(deviceID, devTimers);
@@ -431,7 +429,6 @@ public class TimersListFragment extends Fragment {
 
     private void saveTimers() {
         Utils.log('i', "TimersListFragment: saveTimers() start");
-        wait.start();
         if (tcuservice != null) {
             try {
                 Utils.log('i', "TimersListFragment: saveTimers()");

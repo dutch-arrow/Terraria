@@ -7,6 +7,7 @@
     <string name="seconds">seconden</string>
     <string name="minutes">minuten</string>
     <string name="btnSave">Opslaan</string>
+    <string name="btnDone">Gereed</string>
     <string name="btnRefresh">Vernieuwen</string>
     <string name="mitConfig">Instellingen</string>
     <string name="mitState">Toestand van de apparaten</string>
@@ -43,6 +44,7 @@
     <string name="st_btnManual">Stel in</string>
     <string name="st_tvwTerrarium">Terrarium:</string>
     <string name="st_tvwRoom">Kamer:</string>
+    <string name="st_tvwCpu">CPU:</string>
     <string name="st_tvwStill">nog</string>
     <string name="st_tvwHours">branduren</string>
     <string name="it_tvwEvery">elke</string>
@@ -76,4 +78,28 @@
     <string name="temperature">%1$d</string>
     <string name="humidity">%1$d</string>
     <string name="hoursOn">%1$d</string>
+    <string name="cfg_name">Terraria Configuratie</string>
+    <string name="cfg_title">Terraria Configuratie</string>
+    <string name="cfgTitle">Configuratie</string>
+    <string name="cfgNrOfTerraria">Aantal te beheren terraria (1..10)</string>
+    <string name="cfgHostName">Host name van de TCU</string>
+    <string name="cfgTerrariumName">Naam van het terrarium</string>
+    <string name="cfgUUID">Bluetooth UUID van de TCU</string>
+    <string name="cfgIpAddress">IP adres van de TCU</string>
+    <string name="title_activity_configuration">ConfigurationActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

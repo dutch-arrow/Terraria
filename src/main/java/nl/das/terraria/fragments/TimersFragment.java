@@ -21,7 +21,7 @@ import nl.das.terraria.json.Device;
 
 public class TimersFragment extends Fragment {
 
-    private int tcunr;
+    private static int tcunr;
     private LinearLayout deviceLayout;
     private Button btnCurrent;
 
@@ -33,9 +33,9 @@ public class TimersFragment extends Fragment {
         Utils.log('i', "TimersFragment: newInstance() start");
         TimersFragment fragment = new TimersFragment();
         Bundle args = new Bundle();
-        args.putInt("tcunr", tabnr - 1);
+        args.putInt("tcunr", tabnr);
         fragment.setArguments(args);
-        Utils.log('i', "TimersFragment: newInstance() end");
+        Utils.log('i', "TimersFragment: newInstance() end. TCUnr=" + tabnr);
         return fragment;
     }
 
@@ -56,7 +56,7 @@ public class TimersFragment extends Fragment {
         int backcolor = getResources().getColor(R.color.notActive, null);
         View view = inflater.inflate(R.layout.fragment_timers, container, false);
         deviceLayout = view.findViewById(R.id.deviceButtons);
-        for (Device d :  TerrariaApp.configs[tcunr].getDevices()) {
+        for (Device d :  TerrariaApp.configs.get(tcunr).getDevices()) {
             View v = inflater.inflate(R.layout.dynamic_button, container, false);
             Button b = v.findViewById(R.id.dyn_button_id);
             String devname = d.getDevice();

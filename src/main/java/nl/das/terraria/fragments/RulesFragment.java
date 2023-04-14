@@ -19,45 +19,45 @@ import nl.das.terraria.TerrariaApp;
 import nl.das.terraria.Utils;
 import nl.das.terraria.json.Device;
 
-public class RulesetsFragment extends Fragment {
+public class RulesFragment extends Fragment {
 
     private int tcunr;
 
-    private LinearLayout rulesetsLayout;
+    private LinearLayout rulesLayout;
     private Button btnCurrent;
 
-    public RulesetsFragment() {
+    public RulesFragment() {
         // Required empty public constructor
     }
 
-    public static RulesetsFragment newInstance(int tcunr) {
-        Utils.log('i', "RulesetsFragment: newInstance() start");
-        RulesetsFragment fragment = new RulesetsFragment();
+    public static RulesFragment newInstance(int tcunr) {
+        Utils.log('i', "RulesFragment: newInstance() start");
+        RulesFragment fragment = new RulesFragment();
         Bundle args = new Bundle();
         args.putInt("tcunr", tcunr);
         fragment.setArguments(args);
-        Utils.log('i', "RulesetsFragment: newInstance() end");
+        Utils.log('i', "RulesFragment: newInstance() end");
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.log('i', "RulesetsFragment: onCreate() start");
+        Utils.log('i', "RulesFragment: onCreate() start");
         if (getArguments() != null) {
             tcunr = getArguments().getInt("tcunr");
         }
-        Utils.log('i', "RulesetsFragment: onCreate() end");
+        Utils.log('i', "RulesFragment: onCreate() end");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Utils.log('i', "RulesetsFragment: onCreateView() start");
-        View view = inflater.inflate(R.layout.fragment_rulesets, container, false);
+        Utils.log('i', "RulesFragment: onCreateView() start");
+        View view = inflater.inflate(R.layout.fragment_rules, container, false);
         int backcolorSel = getResources().getColor(R.color.colorPrimaryDark, null);
         int backcolor = getResources().getColor(R.color.notActive, null);
-        int nrrs = TerrariaApp.configs.get(tcunr).getNrOfPrograms();
-        rulesetsLayout = view.findViewById(R.id.rulesetButtons);
+        int nrrs = 5;
+        rulesLayout = view.findViewById(R.id.rulesButtons);
         for (int rs = 0; rs < nrrs; rs++) {
             int rsnr = rs;
             View v = inflater.inflate(R.layout.dynamic_button, container, false);
@@ -72,10 +72,10 @@ public class RulesetsFragment extends Fragment {
                 }
                 btnCurrent = btn;
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.rs_fcvRuleset, RulesetFragment.newInstance(tcunr, rsnr + 1));
+                ft.replace(R.id.rs_fcvRules, TemperatureRuleFragment.newInstance(tcunr, rsnr + 1));
                 ft.commit();
             });
-            rulesetsLayout.addView(v);
+            rulesLayout.addView(v);
         }
 
         if (hasSprayer()) {
@@ -91,36 +91,36 @@ public class RulesetsFragment extends Fragment {
                 }
                 btnCurrent = btn;
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.rs_fcvRuleset, SprayerRuleFragment.newInstance(tcunr));
+                ft.replace(R.id.rs_fcvRules, SprayerRuleFragment.newInstance(tcunr));
                 ft.commit();
             });
-            rulesetsLayout.addView(v);
+            rulesLayout.addView(v);
         }
-        Utils.log('i', "RulesetsFragment: onCreateView() end");
+        Utils.log('i', "RulesFragment: onCreateView() end");
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Utils.log('i', "RulesetsFragment: onViewCreated() start");
-        int nrrs = TerrariaApp.configs.get(tcunr).getNrOfPrograms();
+        Utils.log('i', "RulesFragment: onViewCreated() start");
+        int nrrs = 5;
         int vix = 0;
-        int r = getResources().getIdentifier("mitRuleset", "string", "nl.das.terraria");
+        int r = getResources().getIdentifier("lblTemperatureRule", "string", "nl.das.terraria");
         for (int rs = 0; rs < nrrs; rs++) {
-            Button btn = (Button) rulesetsLayout.getChildAt(vix);
-            btn.setText(getResources().getString(r) + (rs + 1));
+            Button btn = (Button) rulesLayout.getChildAt(vix);
+            btn.setText(getResources().getString(r) + " " + (rs + 1));
             vix++;
         }
         if (hasSprayer()) {
             r = getResources().getIdentifier("lblSprayingRules", "string", "nl.das.terraria");
-            Button btn = (Button) rulesetsLayout.getChildAt(vix);
+            Button btn = (Button) rulesLayout.getChildAt(vix);
             btn.setText(getResources().getString(r));
         }
-        View v = rulesetsLayout.getChildAt(0);
+        View v = rulesLayout.getChildAt(0);
         Button btnRs = v.findViewById(R.id.dyn_button_id);
         btnRs.performClick();
-        Utils.log('i', "RulesetsFragment: onViewCreated() end");
+        Utils.log('i', "RulesFragment: onViewCreated() end");
     }
 
     private boolean hasSprayer() {

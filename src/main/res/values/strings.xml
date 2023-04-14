@@ -51,19 +51,24 @@
     <string name="it_tvwDay">dag(en)</string>
     <string name="it_tvwFor">gedurende</string>
     <string name="lblSprayingRules">Droogregeling</string>
-    <string name="rs_lblActive">Aktief</string>
-    <string name="rs_lblFrom">van</string>
-    <string name="rs_lblTo">tot</string>
-    <string name="rs_lblIdeal">Gewenste temperatuur</string>
-    <string name="rs_lblTempRuleText1">Als de temperatuur</string>
-    <string name="rs_lblTempRuleText2a">boven</string>
-    <string name="rs_lblTempRuleText2b">onder</string>
-    <string name="rs_lblTempRuleText3">komt dan</string>
-    <string name="rs_lblActionText1">zet</string>
-    <string name="rs_lblActionText2">aan</string>
-    <string name="rs_lblActionText3a">voor</string>
-    <string name="rs_lblActionText3b">totdat de gewenste waarde bereikt is</string>
-    <string name="rs_lblActionText4">en</string>
+    <string name="lblTemperatureRule">Temp-regeling</string>
+    <string name="tr_lblActive">Aktief</string>
+    <string name="tr_lblFrom">van</string>
+    <string name="tr_lblTo">tot</string>
+    <string name="tr_lblIdeal">Gewenste temp.</string>
+    <string name="tr_lblDelay">Vertraging</string>
+    <string name="tr_lblTempRuleText1">Als de temperatuur</string>
+    <string name="tr_lblTempRuleText2a">boven</string>
+    <string name="tr_lblTempRuleText2b">onder</string>
+    <string name="tr_lblTempRuleText3">komt dan</string>
+    <string name="tr_lblActionText1">zet</string>
+    <string name="tr_lblActionText2">aan</string>
+    <string name="tr_lblActionText3a">voor</string>
+    <string name="tr_lblActionText3b">totdat de gewenste waarde bereikt is</string>
+    <string-array name="tr_ab">
+        <item>boven</item>
+        <item>onder</item>
+    </string-array>
     <string name="dr_lblActionText1">zet</string>
     <string name="dr_lblActionText2">aan voor</string>
     <string name="dr_lblDelay1">Wanneer</string>
@@ -87,19 +92,4 @@
     <string name="cfgUUID">Bluetooth UUID van de TCU</string>
     <string name="cfgIpAddress">IP adres van de TCU</string>
     <string name="title_activity_configuration">ConfigurationActivity</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

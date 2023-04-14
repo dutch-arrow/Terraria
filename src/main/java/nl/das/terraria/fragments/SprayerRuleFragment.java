@@ -152,7 +152,7 @@ public class SprayerRuleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         Utils.log('i', "SprayerRuleFragment: onCreateView() start");
-        View view = inflater.inflate(R.layout.drying_rule_frg, parent, false).getRootView();
+        View view = inflater.inflate(R.layout.dryingrule_frg, parent, false).getRootView();
         imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         btnSaveDR = view.findViewById(R.id.dr_btnSave);

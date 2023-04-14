@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Ruleset {
+public class TemperatureRule {
 
     @SerializedName("active")
     @Expose
@@ -19,9 +19,15 @@ public class Ruleset {
     @SerializedName("temp_ideal")
     @Expose
     private Integer tempIdeal;
-    @SerializedName("rules")
+    @SerializedName("temp_threshold")
     @Expose
-    private List<Rule> rules = null;
+    private Integer tempThreshold;
+    @SerializedName("delay")
+    @Expose
+    private Integer delay;
+    @SerializedName("actions")
+    @Expose
+    private List<Action> actions = null;
 
     public String getActive() {
         return active;
@@ -55,12 +61,28 @@ public class Ruleset {
         this.tempIdeal = tempIdeal;
     }
 
-    public List<Rule> getRules() {
-        return rules;
+    public Integer getTempThreshold() {
+        return tempThreshold;
     }
 
-    public void setRules(List<Rule> rules) {
-        this.rules = rules;
+    public void setTempThreshold(Integer tempThreshold) {
+        this.tempThreshold = tempThreshold;
+    }
+
+    public Integer getDelay() {
+        return delay;
+    }
+
+    public void setDelay(Integer delay) {
+        this.delay = delay;
+    }
+
+    public List<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
     }
 
 }

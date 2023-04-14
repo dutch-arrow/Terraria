@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/tr_btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:enabled="true"
+            android:text="@string/btnRefresh"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/tr_btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:enabled="false"
+            android:text="@string/btnSave"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_btnRefresh"
+            app:layout_constraintStart_toEndOf="@+id/tr_btnRefresh"
+            app:layout_constraintTop_toTopOf="@+id/tr_btnRefresh" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/tr_swActive"
+            tools:ignore="UseSwitchCompatOrMaterialXml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:checked="false"
+            android:fontFamily="sans-serif"
+            android:text="@string/tr_lblActive"
+            android:textAlignment="viewEnd"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tr_lblFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@id/tr_edtFrom"
+            android:text="@string/tr_lblFrom"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_swActive"
+            app:layout_constraintStart_toEndOf="@+id/tr_swActive"
+            app:layout_constraintTop_toTopOf="@+id/tr_swActive" />
+
+        <EditText
+            android:id="@+id/tr_edtFrom"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblFrom"
+            app:layout_constraintStart_toEndOf="@+id/tr_lblFrom"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblFrom" />
+
+        <TextView
+            android:id="@+id/tr_lblTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:labelFor="@id/tr_edtTo"
+            android:text="@string/tr_lblTo"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblFrom"
+            app:layout_constraintStart_toEndOf="@+id/tr_edtFrom"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblFrom"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/tr_edtTo"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblTo"
+            app:layout_constraintStart_toEndOf="@+id/tr_lblTo"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblTo" />
+
+        <TextView
+            android:id="@+id/tr_lblIdeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:labelFor="@id/tr_edtIdeal"
+            android:text="@string/tr_lblIdeal"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_edtFrom"
+            app:layout_constraintStart_toEndOf="@+id/tr_edtTo"
+            app:layout_constraintTop_toTopOf="@+id/tr_edtFrom"
+            app:layout_constraintVertical_bias="0.476" />
+
+        <EditText
+            android:id="@+id/tr_edtIdeal"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_edtTo"
+            app:layout_constraintStart_toEndOf="@+id/tr_lblIdeal"
+            app:layout_constraintTop_toTopOf="@+id/tr_edtTo" />
+
+        <TextView
+            android:id="@+id/tr_lblDegrees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/degrees"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblIdeal"
+            app:layout_constraintStart_toEndOf="@+id/tr_edtIdeal"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblIdeal"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tr_lblDelay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/tr_lblDelay"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblIdeal"
+            app:layout_constraintStart_toEndOf="@+id/tr_lblDegrees"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblIdeal" />
+
+        <EditText
+            android:id="@+id/tr_edtDelay"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblDelay"
+            app:layout_constraintStart_toEndOf="@+id/tr_lblDelay"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblDelay" />
+
+        <TextView
+            android:id="@+id/tr_lblMinuten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minutes"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_lblDelay"
+            app:layout_constraintStart_toEndOf="@+id/tr_edtDelay"
+            app:layout_constraintTop_toTopOf="@+id/tr_lblDelay" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tr_tvwRuleText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:labelFor="@id/tr_edtThreshold"
+            android:text="@string/tr_lblTempRuleText1"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/tr_spnAboveBelow"
+            android:layout_centerHorizontal="true"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_tvwRuleText1"
+            app:layout_constraintStart_toEndOf="@+id/tr_tvwRuleText1"
+            app:layout_constraintTop_toTopOf="@+id/tr_tvwRuleText1" />
+
+        <EditText
+            android:id="@+id/tr_edtThreshold"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:autofillHints="android:hint"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_tvwRuleText1"
+            app:layout_constraintStart_toEndOf="@+id/tr_spnAboveBelow"
+            app:layout_constraintTop_toTopOf="@+id/tr_tvwRuleText1" />
+
+        <TextView
+            android:id="@+id/tr_tvwDegrees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/degrees"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_edtThreshold"
+            app:layout_constraintStart_toEndOf="@+id/tr_edtThreshold"
+            app:layout_constraintTop_toTopOf="@+id/tr_edtThreshold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/tr_lblTempRuleText3"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tr_tvwDegrees"
+            app:layout_constraintStart_toEndOf="@+id/tr_tvwDegrees"
+            app:layout_constraintTop_toTopOf="@+id/tr_tvwDegrees" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/tr_layActions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
+</LinearLayout>

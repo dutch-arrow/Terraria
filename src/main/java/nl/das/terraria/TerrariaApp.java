@@ -3,65 +3,40 @@ package nl.das.terraria;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import nl.das.terraria.dialogs.WaitSpinner;
 import nl.das.terraria.fragments.ConfigurationFragment;
 import nl.das.terraria.fragments.HelpFragment;
 import nl.das.terraria.fragments.HistoryFragment;
-import nl.das.terraria.fragments.RulesetsFragment;
+import nl.das.terraria.fragments.RulesFragment;
 import nl.das.terraria.fragments.StateFragment;
 import nl.das.terraria.fragments.TerrariaFragment;
 import nl.das.terraria.fragments.TimersFragment;
-import nl.das.terraria.json.Error;
 import nl.das.terraria.json.Properties;
 import nl.das.terraria.services.TcuService;
 
 public class TerrariaApp extends AppCompatActivity {
 
-    public static final boolean LOGGING = false;
+    public static final boolean LOGGING = true;
 
     public TerrariaApp() {
 
@@ -219,7 +194,7 @@ public class TerrariaApp extends AppCompatActivity {
         if (id == R.id.menu_program_item) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.app_layout, RulesetsFragment.newInstance(TerrariaFragment.curTabNr), "rulesets")
+                    .replace(R.id.app_layout, RulesFragment.newInstance(TerrariaFragment.curTabNr), "rulesets")
                     .commit();
             return true;
         }

@@ -42,8 +42,8 @@ public class TcuService extends Service {
     public static final int CMD_SET_LIFECYCLE_COUNTER = 11;
     public static final int CMD_GET_TIMERS = 12;
     public static final int CMD_SET_TIMERS = 13;
-    public static final int CMD_GET_RULESET = 14;
-    public static final int CMD_SET_RULESET = 15;
+    public static final int CMD_GET_RULE = 14;
+    public static final int CMD_SET_RULE = 15;
     public static final int CMD_GET_SPRAYERRULE = 16;
     public static final int CMD_SET_SPRAYERRULE = 17;
     public static final int CMD_GET_TEMP_FILES = 18;
@@ -67,8 +67,8 @@ public class TcuService extends Service {
         btCommands[CMD_SET_LIFECYCLE_COUNTER] = "setLifecycleCounter";
         btCommands[CMD_GET_TIMERS]            = "getTimersForDevice";
         btCommands[CMD_SET_TIMERS]            = "replaceTimers";
-        btCommands[CMD_GET_RULESET]           = "getRuleset";
-        btCommands[CMD_SET_RULESET]           = "saveRuleset";
+        btCommands[CMD_GET_RULE]              = "getTemperatureRule";
+        btCommands[CMD_SET_RULE]              = "saveTemperatureRule";
         btCommands[CMD_GET_SPRAYERRULE]       = "getSprayerRule";
         btCommands[CMD_SET_SPRAYERRULE]       = "setSprayerRule";
         btCommands[CMD_GET_TEMP_FILES]        = "getTempTracefiles";
@@ -92,8 +92,8 @@ public class TcuService extends Service {
         httpPaths[CMD_SET_LIFECYCLE_COUNTER] = "counter/{device}/{value}";
         httpPaths[CMD_GET_TIMERS]            = "timers/{device}";
         httpPaths[CMD_SET_TIMERS]            = "timers";
-        httpPaths[CMD_GET_RULESET]           = "ruleset/{nr}";
-        httpPaths[CMD_SET_RULESET]           = "ruleset/{nr}";
+        httpPaths[CMD_GET_RULE]              = "temperaturerule/{nr}";
+        httpPaths[CMD_SET_RULE]              = "temperaturerule/{nr}";
         httpPaths[CMD_GET_SPRAYERRULE]       = "sprayerrule";
         httpPaths[CMD_SET_SPRAYERRULE]       = "sprayerrule";
         httpPaths[CMD_GET_TEMP_FILES]        = "history/temperature";
@@ -256,9 +256,9 @@ public class TcuService extends Service {
             case CMD_SET_TIMERS:
                 url = url.replace("{device}", jsonobj.get("device").getAsString());
                 break;
-            case CMD_GET_RULESET:
-            case CMD_SET_RULESET:
-                url = url.replace("{nr}", jsonobj.get("rulesetnr").getAsString());
+            case CMD_GET_RULE:
+            case CMD_SET_RULE:
+                url = url.replace("{nr}", jsonobj.get("rulenr").getAsString());
                 break;
             case CMD_SET_DEVICE_ON_FOR:
                 url = url.replace("{device}", jsonobj.get("device").getAsString());
@@ -275,7 +275,7 @@ public class TcuService extends Service {
         }
         switch(command) {
             case CMD_SET_TIMERS:
-            case CMD_SET_RULESET:
+            case CMD_SET_RULE:
             case CMD_SET_SPRAYERRULE:
                 json = httpService.sendPostRequest("http://" + ips.get(tcunr - 1) + "/" + url, new Gson().toJson(jsonobj));
                 break;

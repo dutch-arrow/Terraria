@@ -12,6 +12,10 @@ public class Action {
     @Expose
     private Integer onPeriod;
 
+    public Action(String dev, Integer period) {
+        this.device = dev;
+        this.onPeriod = period;
+    }
     public String getDevice() {
         return device;
     }

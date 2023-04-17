@@ -224,6 +224,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/tr_tvwRuleText1"
             app:layout_constraintStart_toEndOf="@+id/tr_tvwRuleText1"
             app:layout_constraintTop_toTopOf="@+id/tr_tvwRuleText1" />
@@ -266,10 +267,15 @@
             app:layout_constraintTop_toTopOf="@+id/tr_tvwDegrees" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/tr_layActions"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/tr_layActions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </LinearLayout>

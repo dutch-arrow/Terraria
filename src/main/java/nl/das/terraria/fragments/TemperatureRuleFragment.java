@@ -54,7 +54,7 @@ import nl.das.terraria.json.Action;
 
 public class TemperatureRuleFragment extends Fragment {
 
-    private static final int NR_OF_ACTIONS = 4;
+    private static final int NR_OF_ACTIONS = 7;
     private int tcunr;
     private final ArrayList<Integer> supportedMessages = new ArrayList<>();
     private Messenger tcuservice;
@@ -78,7 +78,9 @@ public class TemperatureRuleFragment extends Fragment {
     private LinearLayout actionsLayout;
     private View action;
     private WaitSpinner wait;
-    private final boolean[] userSelect = new boolean[5];
+    private final Integer[] lastPos = new Integer[NR_OF_ACTIONS];
+    private boolean refresh;
+
 
     public TemperatureRuleFragment() {
         supportedMessages.add(TcuService.CMD_GET_RULE);
@@ -142,6 +144,14 @@ public class TemperatureRuleFragment extends Fragment {
                     Utils.log('i', "TemperatureRuleFragment: " + msg.obj.toString());
                     rule = new Gson().fromJson(msg.obj.toString(), TemperatureRule.class);
                     updateRule();
+                    if (refresh) {
+                        for (int a = 0; a < NR_OF_ACTIONS; a++) {
+                            action = actionsLayout.getChildAt(a);
+                            Spinner spnDevice = action.findViewById(R.id.tr_spnDevice);
+                            lastPos[a] = spnDevice.getSelectedItemPosition();
+                        }
+                    }
+                    btnSave.setEnabled(false);
                     wait.dismiss();
                     break;
                 case TcuService.CMD_SET_RULE:
@@ -180,7 +190,7 @@ public class TemperatureRuleFragment extends Fragment {
         Utils.log('i', "TemperatureRuleFragment: onCreateView() start");
         View view = inflater.inflate(R.layout.temperaturerule_frg, container, false);
         imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-
+        this.refresh = false;
         btnSave = view.findViewById(R.id.tr_btnSave);
         btnSave.setOnClickListener(v -> {
             btnSave.requestFocusFromTouch();
@@ -191,10 +201,10 @@ public class TemperatureRuleFragment extends Fragment {
         });
         btnRefresh = view.findViewById(R.id.tr_btnRefresh);
         btnRefresh.setOnClickListener(v -> {
+            this.refresh = true;
             imm.hideSoftInputFromWindow(btnRefresh.getWindowToken(), 0);
             wait.start();
             getRule();
-            btnSave.setEnabled(false);
         });
         swActive = view.findViewById(R.id.tr_swActive);
         swActive.setOnClickListener(v -> {
@@ -339,8 +349,8 @@ public class TemperatureRuleFragment extends Fragment {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_list, R.id.tr_spnItem, spn_items.toArray(new String[0]));
         actionsLayout = view.findViewById(R.id.tr_layActions);
-        final Integer[] lastPos = {-1, -1, -1, -1, -1};
         for (int a = 0; a < NR_OF_ACTIONS; a++) {
+            lastPos[a] = -2;
             action = inflater.inflate(R.layout.rule_action_frg, container, false);
             actionsLayout.addView(action, a);
             RadioGroup rbgPeriod = action.findViewById((R.id.tr_rbgPeriod));
@@ -355,7 +365,8 @@ public class TemperatureRuleFragment extends Fragment {
             spnDevice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (lastPos[anr] != -1) { // init
+                    Utils.log('i', "Start setOnItemSelectedListener: lastPos=" + lastPos[anr] + " position=" + position);
+                    if (lastPos[anr] >= -1) { // init done
                         if (lastPos[anr] != position) {
                             if (position == 0) { // "no device"
                                 rbgPeriod.setEnabled(false);
@@ -368,11 +379,9 @@ public class TemperatureRuleFragment extends Fragment {
                                 rule.getActions().get(anr).setDevice("no device");
                                 rule.getActions().get(anr).setOnPeriod(0);
                                 lblSeconds.setTextColor(getResources().getColor(R.color.disabled, null));
-                                if (userSelect[anr]) {
+                                if (lastPos[anr] != -1) {
                                     btnSave.setEnabled(true);
-                                } else {
-                                    userSelect[anr] = true;
-                                 }
+                                }
                                 lastPos[anr] = position;
                             } else if (position > 0) {
                                 rbgPeriod.setEnabled(true);
@@ -383,17 +392,21 @@ public class TemperatureRuleFragment extends Fragment {
                                 }
                                 rule.getActions().get(anr).setDevice(spn_devices.get(position - 1));
                                 lblSeconds.setTextColor(getResources().getColor(R.color.black, null));
-                                if (userSelect[anr]) {
+                                if (lastPos[anr] != -1) {
                                     btnSave.setEnabled(true);
-                                } else {
-                                    userSelect[anr] = true;
                                 }
                                 lastPos[anr] = position;
                             }
                         }
                     } else {
-                        lastPos[anr] = position;
+                        if (lastPos[anr] == -2) {
+                            lastPos[anr] = -1;
+                        } else {
+                            lastPos[anr] = position;
+                        }
+                        btnSave.setEnabled(false);
                     }
+                    Utils.log('i', "End setOnItemSelectedListener: lastPos=" + lastPos[anr] + " position=" + position);
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
@@ -519,8 +532,8 @@ public class TemperatureRuleFragment extends Fragment {
     private void updateRule() {
         Utils.log('i', "TemperatureRuleFragment: updateRule() start");
         swActive.setChecked(rule.getActive().equalsIgnoreCase("yes"));
-        edtFrom.setText(rule.getFrom());
-        edtTo.setText(rule.getTo());
+        edtFrom.setText(rule.getFrom().replace(":", "."));
+        edtTo.setText(rule.getTo().replace(":", "."));
         edtIdeal.setText(rule.getTempIdeal() + "");
         edtDelay.setText(rule.getDelay() / 60 + "");
         int value = rule.getTempThreshold();
@@ -532,10 +545,14 @@ public class TemperatureRuleFragment extends Fragment {
             spnAboveBelow.setSelection(0);
         }
 
-        userSelect[0] = userSelect[1] = userSelect[2]= userSelect[3] = userSelect[4] = false;
         for (int i = 0; i < NR_OF_ACTIONS; i++) {
             action = actionsLayout.getChildAt(i);
-            Action a = rule.getActions().get(i);
+            Action a;
+            if (i < rule.getActions().size()) {
+                a = rule.getActions().get(i);
+            } else {
+                a = new Action("no device", 0);
+            }
             int ix = 0;
             Spinner spnDevice = action.findViewById(R.id.tr_spnDevice);
             if (!a.getDevice().equalsIgnoreCase("no device")) {

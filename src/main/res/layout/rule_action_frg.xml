@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="24sp"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/tr_lblActionText1"
             app:layout_constraintStart_toEndOf="@+id/tr_lblActionText1"
             app:layout_constraintTop_toTopOf="@+id/tr_lblActionText1" />

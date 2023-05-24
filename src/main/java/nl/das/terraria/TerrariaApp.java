@@ -36,7 +36,7 @@ import nl.das.terraria.services.TcuService;
 
 public class TerrariaApp extends AppCompatActivity {
 
-    public static final boolean LOGGING = true;
+    public static final boolean LOGGING = false;
 
     public TerrariaApp() {
 

@@ -52,7 +52,7 @@ public class TerrariaFragment extends Fragment {
                 Utils.log('i', "TerrariaFragment: " + msg.obj.toString());
                 if (msg.obj.toString().startsWith("{\"error")) {
                     Error err = new Gson().fromJson(msg.obj.toString(), Error.class);
-                    Utils.showMessage(getContext(), getView(), err.getError());
+                    Utils.showMessage(TerrariaApp.instance.getApplicationContext(), getView(), err.getError());
                 } else {
                     Properties tmp = new Gson().fromJson(msg.obj.toString(), Properties.class);
                     TerrariaApp.configs.get(curTabNr).setDevices(tmp.getDevices());
@@ -185,12 +185,12 @@ public class TerrariaFragment extends Fragment {
 //            Utils.log('i',"TerrariaFragment: Active fragment '" + f.getTag() + "' removed");
 //            getParentFragmentManager().beginTransaction().remove(f).commit();
 //        }
-        mTabTitles[tcunr - 1].setTextColor(Color.BLACK);
+        mTabTitles[curTabNr - 1].setTextColor(Color.BLACK);
         curTabNr = Integer.parseInt((String)v.getTag());
         mTabbar.setVisibility(View.VISIBLE);
         mTabTitles[curTabNr - 1].setTextColor(Color.WHITE);
         // Now thet the properties of the TCU linked to the current tab number
-        getProperties(tcunr);
+        getProperties(curTabNr);
     }
 
     public void getProperties(int tcunr) {

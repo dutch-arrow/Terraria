@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -266,7 +267,7 @@ public class TcuService extends Service {
                 break;
             case CMD_SET_LIFECYCLE_COUNTER:
                 url = url.replace("{device}", jsonobj.get("device").getAsString());
-                url = url.replace("{hoursOn}", jsonobj.get("hoursOn").getAsString());
+                url = url.replace("{value}", jsonobj.get("hoursOn").getAsString());
                 break;
             case CMD_GET_TEMP_FILE:
             case CMD_GET_STATE_FILE:
@@ -278,6 +279,14 @@ public class TcuService extends Service {
             case CMD_SET_RULE:
             case CMD_SET_SPRAYERRULE:
                 json = httpService.sendPostRequest("http://" + ips.get(tcunr - 1) + "/" + url, new Gson().toJson(jsonobj));
+                break;
+            case CMD_SET_DEVICE_ON:
+            case CMD_SET_DEVICE_OFF:
+            case CMD_SET_DEVICE_MANUAL_ON:
+            case CMD_SET_DEVICE_MANUAL_OFF:
+            case CMD_SET_DEVICE_ON_FOR:
+            case CMD_SET_LIFECYCLE_COUNTER:
+                json = httpService.sendPostRequest("http://" + ips.get(tcunr - 1) + "/" + url, "{}");
                 break;
             default:
                 json = httpService.sendGetRequest("http://" + ips.get(tcunr - 1) + "/" + url);

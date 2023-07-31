@@ -460,8 +460,10 @@ public class StateFragment extends Fragment {
                     SwitchCompat swManual = v.findViewById(R.id.trm_swManualDevice);
                     SwitchCompat swDevice = v.findViewById(R.id.trm_switchDevice);
                     TextView state = v.findViewById(R.id.trm_tvwDeviceState);
+                    TextView control = v.findViewById(R.id.trm_tvwDeviceControl);
                     swManual.setChecked(s.getManual().equalsIgnoreCase("yes"));
                     swDevice.setChecked(s.getState().equalsIgnoreCase("on"));
+                    control.setText(translateConrolledBy(s.getControlledBy()));
                     state.setText(translateEndTime(s.getEndTime()));
                     if (d.isLifecycle()) {
                         TextView h = v.findViewById(R.id.trm_tvwHours_lcc);
@@ -497,11 +499,25 @@ public class StateFragment extends Fragment {
         }
     }
 
+    private String translateConrolledBy(String controlledBy) {
+        if (controlledBy.equalsIgnoreCase("free")) {
+            return "";
+        } else if (controlledBy.equalsIgnoreCase("Sprayer Rule")) {
+            return "Droogregeling";
+        } else if (controlledBy.equalsIgnoreCase("Mist Rule")) {
+            return "Vernevelaar";
+        } else if (controlledBy.startsWith("Temp Rule")) {
+            return controlledBy.replace("Temp Rule", "Regeling");
+        } else {
+            return controlledBy;
+        }
+    }
+
     private String translateEndTime(String endTime) {
         if (endTime == null) {
             return "";
         } else {
-            if (endTime.equalsIgnoreCase("no endtime")) {
+            if (endTime.equalsIgnoreCase("indefinitely")) {
                 return "geen eindtijd";
             } else if (endTime.equalsIgnoreCase("until ideal temperature is reached")) {
                 return "tot ideale temperatuur bereikt is";

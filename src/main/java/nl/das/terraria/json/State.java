@@ -11,6 +11,9 @@ public class State {
     @SerializedName("state")
     @Expose
     private String state;
+    @SerializedName("controlledby")
+    @Expose
+    private String controlledBy;
     @SerializedName("end_time")
     @Expose
     private String endTime;
@@ -36,6 +39,12 @@ public class State {
     public void setState(String state) {
         this.state = state;
     }
+
+    public String getControlledBy() {
+        return this.controlledBy;
+    }
+
+    public void setControlledBy(String control) { this.controlledBy = control; }
 
     public String getEndTime() {
         return endTime;
